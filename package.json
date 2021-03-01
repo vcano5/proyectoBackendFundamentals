@@ -1,0 +1,21 @@
+{
+  "name": "proyectoBackendFundamentals",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "start": "npm app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vcano5/proyectoBackendFundamentals.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vcano5/proyectoBackendFundamentals/issues"
+  },
+  "homepage": "https://github.com/vcano5/proyectoBackendFundamentals#readme"
+}
