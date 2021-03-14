@@ -8,10 +8,11 @@ const { registro,
 
 const auth = require('./auth');
 
+const roles = require('./rol');
 
 // router.get('/', searchBy);
 
-router.get('/', auth.requerido, obtenerBibliotecarios);
+router.get('/', auth.requerido, roles, obtenerBibliotecarios);
 router.get('/:id', auth.requerido, obtenerBibliotecarios);
 router.post('/',auth.opcional , registro);
 router.post('/entrar', iniciarSesion);

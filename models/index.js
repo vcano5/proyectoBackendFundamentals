@@ -9,7 +9,7 @@ const sequelize = new Sequelize(process.env.DB, process.env.DB_USER, process.env
 	  min: 0,
 	  idle: 10000
 	},
-	// logging: false
+	logging: false
 });
 
 const db = {};

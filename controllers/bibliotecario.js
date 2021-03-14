@@ -23,7 +23,7 @@ function registro(req, res, next) {
 }
 
 function obtenerBibliotecarios(req, res, next) {
-	console.log("USUARIO: " + JSON.stringify(req.usuario))
+	console.log("LOCALS: " + JSON.stringify(res.locals))
 	Bibliotecario.findAll({where: {idBibliotecario: req.usuario.id}})
 		.then(r => {
 			return res.json(r);

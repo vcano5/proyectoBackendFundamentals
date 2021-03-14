@@ -13,8 +13,8 @@ passport.use(new LocalStrategy({
 		.then(user => {
 			//console.log(user)
 			console.log(password)
-			console.log(user.validarPassword(user.salt, password))
-			if(!user || !user.validarPassword(user.salt, password)) {
+			console.log(user.validarPassword(password))
+			if(!user || !user.validarPassword(password)) {
 				return done(null, false, {errors: {'email o contraseña': 'equivocados'}});
 			}
 			return done(null, user);

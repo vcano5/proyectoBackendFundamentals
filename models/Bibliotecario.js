@@ -15,7 +15,10 @@ module.exports = (sequelize, Sequelize) => {
         hash: {
             type: Sequelize.STRING(1024),
         },
-        rol: Sequelize.STRING
+        rol: {
+            type: Sequelize.STRING,
+            defaultValue: 'Usuario'
+        }
     })
 
     Bibliotecario.prototype.crearPassword = function(password) {
@@ -25,12 +28,10 @@ module.exports = (sequelize, Sequelize) => {
                     .toString('hex');
     }
 
-    Bibliotecario.prototype.validarPassword = function(sal, password) {
-        //console.log(`SAL: ${sal}`)
+    Bibliotecario.prototype.validarPassword = function(password) {
         const hash = crypto
-                        .pbkdf2Sync(password, sal, 10000, 512, 'sha512')
+                        .pbkdf2Sync(password, this.salt, 10000, 512, 'sha512')
                         .toString('hex');
-        console.log({orignal: this.hash, generado: hash})
         //console.log(hash)
         return this.hash === hash;
     }
