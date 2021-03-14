@@ -1,8 +1,21 @@
 const router = require('express').Router();
 
-const { searchBy } = require('../controllers/catalogo')
+const { registro,
+	obtenerBibliotecarios,
+	modificarBibliotecario,
+	eliminarBibliotecario,
+	iniciarSesion } = require('../controllers/bibliotecario')
 
-router.get('/', searchBy);
+const auth = require('./auth');
 
+
+// router.get('/', searchBy);
+
+router.get('/', auth.requerido, obtenerBibliotecarios);
+router.get('/:id', auth.requerido, obtenerBibliotecarios);
+router.post('/',auth.opcional , registro);
+router.post('/entrar', iniciarSesion);
+router.put('/:id', auth.requerido, modificarBibliotecario);
+router.delete('/:id', auth.requerido, eliminarBibliotecario)
 
 module.exports = router;

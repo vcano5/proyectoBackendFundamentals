@@ -25,6 +25,13 @@ db.sequelize.sync({force: isDevelopment}).then(() => {
 	console.log('Drop and re-sync db.')
 });
 
+// Manejando los errores 404
+app.use(function(req, res, next) {
+	var err = new Error('Not Found');
+	err.status = 404;
+	next(err);
+  });
+
 var server = app.listen((process.env.PORT || 3000), () => {
 	console.log('Puerto: ' + server.address().port);
 })

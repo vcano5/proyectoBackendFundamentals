@@ -11,6 +11,7 @@ module.exports = (sequelize, Sequelize) => {
 		genero: Sequelize.STRING,
         publicaciones: Sequelize.STRING
     })
+    
 
     return Catalogo
 }
