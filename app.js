@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express = require('express'),
 	cors = require('cors'),
 	bodyParser = require('body-parser');
@@ -16,6 +18,12 @@ app.use(function(req, res, next) {
 	next(err);
 })
 
+
+const db = require('./models');
+var isDevelopment = process.env.NODE_ENV === "development"
+db.sequelize.sync({force: isDevelopment}).then(() => {
+	console.log('Drop and re-sync db.')
+});
 
 var server = app.listen((process.env.PORT || 3000), () => {
 	console.log('Puerto: ' + server.address().port);
