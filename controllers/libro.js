@@ -4,12 +4,14 @@ const Libro = db.libro;
 const Op = db.Sequelize.Op;
 
 function getLibros(req, res) {
+	// R: Regresa todos los libros
 	Libro.findAll({}).then(data => {
 		res.send(data);
 	})
 }
 
 function getLibro(req, res) {
+	// R: Regresa los libros que coincidan con los parametros dados
 	var limite = 99999;
 	if(req.query.limite !== undefined) {
 		if(isNaN(req.query.limite)) {
@@ -37,6 +39,7 @@ function getLibro(req, res) {
 }
 
 function crearLibro(req, res) {
+	// C: Crea un nuevo libro
 	if(!req.body) {
 		res.status(400).send({message: 'El contenido no puede estar vacio'})
 		return;
@@ -101,6 +104,7 @@ function crearVariosLibros(req, res) {
 }
 
 function updateLibro(req, res) {
+	// U: Actualiza un libro con el parametro ISBN
 	const id = req.params.ISBN;
 	Libro.update(req.body, {
 		where: {ISBN: id}
@@ -125,17 +129,23 @@ function updateLibro(req, res) {
 }
 
 function borrarLibro(req, res) {
-	Libro.destroy({where: {ISBN: req.params.ISBN}})
-		.then(num => {
-			if(num == 1) {
-				res.send({
-					message: `Libro con ISBN ${req.params.ISBN} eliminado correctamente`
-				})
-			}
-		})
-		.catch(err => {
-			res.status(500).send({message: err.message})
-		})
+	// D: Borra un libro con el parametro ISBN
+	if(req.query.ISBN !== undefined) {
+		Libro.destroy({where: {ISBN: req.params.ISBN}})
+			.then(num => {
+				if(num == 1) {
+					res.send({
+						message: `Libro con ISBN ${req.params.ISBN} eliminado correctamente`
+					})
+				}
+			})
+			.catch(err => {
+				res.status(500).send({message: err.message})
+			})
+	} 
+	else {
+		res.status(400).send({mensaje: 'Falta el parametro ISBN'})
+	}
 	
 }
 
