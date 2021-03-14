@@ -6,12 +6,15 @@ const Sequelize = require('sequelize');
 
 
 passport.use(new LocalStrategy({
-	idField: 'id',
+	usernameField: 'id',
 	passwordField: 'password'
 }, function(id, password, done) {
 	Bibliotecario.findOne({idBibliotecario: id})
 		.then(user => {
-			if(!user || !user.validarPassword(password)) {
+			//console.log(user)
+			console.log(password)
+			console.log(user.validarPassword(user.salt, password))
+			if(!user || !user.validarPassword(user.salt, password)) {
 				return done(null, false, {errors: {'email o contraseña': 'equivocados'}});
 			}
 			return done(null, user);

@@ -1,5 +1,6 @@
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
+const passport = require('passport');
 
 module.exports = (sequelize, Sequelize) => {
     const Bibliotecario = sequelize.define("bibliotecario", {
@@ -11,7 +12,10 @@ module.exports = (sequelize, Sequelize) => {
         nombre: Sequelize.STRING,
 		salt: Sequelize.STRING,
 		status: Sequelize.STRING,
-        hash: Sequelize.STRING
+        hash: {
+            type: Sequelize.STRING(1024),
+        },
+        rol: Sequelize.STRING
     })
 
     Bibliotecario.prototype.crearPassword = function(password) {
@@ -21,10 +25,13 @@ module.exports = (sequelize, Sequelize) => {
                     .toString('hex');
     }
 
-    Bibliotecario.prototype.validarPassword = function(password) {
+    Bibliotecario.prototype.validarPassword = function(sal, password) {
+        //console.log(`SAL: ${sal}`)
         const hash = crypto
-                        .pbkdf2(password, this.salt, 10000, 512, 'sha512')
+                        .pbkdf2Sync(password, sal, 10000, 512, 'sha512')
                         .toString('hex');
+        console.log({orignal: this.hash, generado: hash})
+        //console.log(hash)
         return this.hash === hash;
     }
 

@@ -1,6 +1,7 @@
 const db = require('../models');
 const Bibliotecario = db.bibliotecario;
 const Op = db.Sequelize.Op;
+const passport = require('passport');
 
 const crypto = require('crypto');
 
@@ -22,6 +23,7 @@ function registro(req, res, next) {
 }
 
 function obtenerBibliotecarios(req, res, next) {
+	console.log("USUARIO: " + JSON.stringify(req.usuario))
 	Bibliotecario.findAll({where: {idBibliotecario: req.usuario.id}})
 		.then(r => {
 			return res.json(r);
@@ -63,8 +65,8 @@ function eliminarBibliotecario(req, res) {
   }
   
   function iniciarSesion(req, res, next) {
-	if (!req.body.email) {
-	  return res.status(422).json({ errors: { email: "no puede estar vacío" } });
+	if (!req.body.id) {
+	  return res.status(422).json({ errors: {id: "no puede estar vacío" } });
 	}
   
 	if (!req.body.password) {

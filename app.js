@@ -10,6 +10,9 @@ app.use(cors());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
+require('./config/passport');
+
+
 app.use('/v1', require('./routes'));
 
 app.use(function(req, res, next) {
