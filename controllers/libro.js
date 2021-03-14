@@ -9,6 +9,33 @@ function getLibros(req, res) {
 	})
 }
 
+function getLibro(req, res) {
+	var limite = 99999;
+	if(req.query.limite !== undefined) {
+		if(isNaN(req.query.limite)) {
+			res.status(409).send({mensaje: 'El parametro limite no es un numero'})
+			return
+		}
+		limite = parseInt(req.query.limite);
+		delete req.query.limite
+	}
+	if(req.params == undefined) {
+		res.send(409).send({mensaje: "Faltan parametros"})
+	}
+	var r = [];
+	for(qK of Object.keys(req.query)) {
+		r[r.length] = JSON.parse('{"' + qK + '": "' + req.query[qK] + '"}')
+	}
+	
+	Libro.findAll({limit: limite, where: r})
+		.then(data => {
+			res.status(200).send(data)
+		})
+		.catch(err => {
+			res.status(500).send({mensaje: "Algo salio al realizar la consulta", consulta: [...r]})
+		})
+}
+
 function crearLibro(req, res) {
 	if(!req.body) {
 		res.status(400).send({message: 'El contenido no puede estar vacio'})
@@ -43,7 +70,6 @@ function crearVariosLibros(req, res) {
 	if(req.body.length > 1) {
 		var peticion = req.body;
 		Libro.bulkCreate(peticion).then(data => {
-			//console.log(data.length)
 			res.status(201).send({message: `Creados ${data.length} libros`})
 		})
 		.catch(err => {
@@ -51,23 +77,6 @@ function crearVariosLibros(req, res) {
 				message: err.message || 'Algo ocurrio al crear muchos libros'
 			})
 		})
-		// peticion.forEach(libro => {
-
-		
-		// 	console.log(libro)
-		// 	Libro.create(libro)
-		// 	.then(data => {
-		// 		recuento++;
-		// 		//res.send(data);
-		// 	})
-		// 	.catch(err => {
-		// 		res.status(500).send({
-		// 			message: err.message || "Algo ocurrio al crear un nuevo Libro :("
-		// 		})
-		// 	})
-		// })
-		
-		//res.status(201).send({message: `Creados ${recuento} libros`})
 	}
 	const libro = {
 		ISBN: req.body.ISBN,
@@ -137,5 +146,6 @@ module.exports = {
 	crearLibro,
 	crearVariosLibros,
 	borrarLibro,
-	updateLibro
+	updateLibro,
+	getLibro
 }
