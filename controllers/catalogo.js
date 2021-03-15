@@ -18,7 +18,6 @@ function searchBy(req, res) {
 			const k = objkeys[0];
 			const v = req.query[k];
 			var q = JSON.parse(`{"${k}": "${v}"}`);
-			console.log(q)
 			Catalogo.findAll({where: q})
 				.then(data => {
 					res.status(200).send(data)

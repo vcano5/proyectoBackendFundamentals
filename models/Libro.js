@@ -1,7 +1,7 @@
 module.exports = (sequelize, Sequelize) => {
     const Libro = sequelize.define("libro", {
         ISBN: {
-            type: Sequelize.STRING,
+            type: Sequelize.STRING(20),
             primaryKey: true
         },
 		titulo: Sequelize.STRING,

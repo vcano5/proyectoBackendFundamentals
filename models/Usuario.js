@@ -38,7 +38,6 @@ module.exports = (sequelize, Sequelize) => {
         const hash = crypto
                         .pbkdf2Sync(password, this.salt, 10000, 512, 'sha512')
                         .toString('hex');
-        //console.log(hash)
         return this.hash === hash;
     }
 

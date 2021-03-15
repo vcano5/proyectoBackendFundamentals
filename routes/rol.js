@@ -1,16 +1,15 @@
 const db = require('../models');
-const Bibliotecario = db.bibliotecario;
+const Usuario = db.usuario;
 
 var roles = function (req, res, next) {
-	var id = req.usuario.id;
-	Bibliotecario.findByPk(id)
+	var id = req.usuario.nombre;
+	Usuario.findOne({where: {nombre: id}})
 		.then(d => {
 			res.locals.rol = d.rol;
-			console.log(d.rol)
 			next()
 		})
 		.catch(e => {
-			console.log(e)
+			console.error(`Ocurrio un error al solicitar el rol ${e}`)
 			next()
 		}) 
   };

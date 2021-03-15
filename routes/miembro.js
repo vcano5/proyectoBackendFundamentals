@@ -2,19 +2,22 @@ const router = require('express').Router();
 
 const {
 	iniciarSesion,
-	renovarMembresia,
 	cancelarMembresia,
-	registro
+	registro,
+	obtenerUsuario
 } = require('../controllers/Usuario')
 
-const {
-	getLibro,
-	getLibros
-} = require('../controllers/libro')
+// const {
+// 	getLibro,
+// 	getLibros
+// } = require('../controllers/libro')
 
-//router.get('/', obtenerLibros);
-router.post('/', registro);
-//router.put('/:id', modificarLibro);
-//router.delete('/:id', eliminarLibro);
+const auth = require('./auth');
+const roles = require('./rol');
+
+router.post('/registro', registro);
+router.post('/cancelarMembresia', auth.requerido, roles, cancelarMembresia)
+router.post('/entrar', iniciarSesion)
+router.get('/', auth.requerido, roles, obtenerUsuario);
 
 module.exports = router;
