@@ -108,4 +108,7 @@ Cuenta, libro, catalogo
 5. Ejecutar el proyecto
 > npm run start
 
+## API
+[https://app.swaggerhub.com/apis/backendfund-equipo3/bibliotecaAPI/1.0.0](https://app.swaggerhub.com/apis/backendfund-equipo3/bibliotecaAPI/1.0.0)
+
 #### Equipo 3
