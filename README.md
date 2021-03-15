@@ -12,12 +12,14 @@ membresía: buscar libros, y acceder a su contenido, para el administrador
 (bibliotecario): gestionar los libros y las relaciones de los miembros con la
 biblioteca_
 <br/>
+
 - ¿Qué tipos de usuario tendrá nuestro sistema?
 
 	Bibliotecario
 	Miembro
 	Usuario no registrado
 <br/>
+
 - ¿Qué acciones puede realizar cada usuario?
 
 	Bibliotecario: 
@@ -38,14 +40,17 @@ biblioteca_
 	Usuarios no registrados
 	- Registrarse
 <br>
+
 - ¿Qué información se necesita?
 
 Por parte del bibliotecario y el usuario con membresia: nombre de usuario y contraseña
 <br>
+
 - ¿Cuáles son las principales entidades?
 
 Cuenta, libro, catalogo
 <br>
+
 - ¿Qué caracteristicas tiene cada entidad?
 
 	- Cuenta: Existiran dos tipos de cuenta en el sistema una de miembro y la otra sera de usuario
@@ -55,6 +60,7 @@ Cuenta, libro, catalogo
 	- Libro
 		Atributos: ISBN, titulo, genero, idioma, número de páginas, fecha de publicación.
 <br>
+
 - ¿Que funcionalidades tiene cada entidad?
 
 	- Cuenta: dar un tipo de acceso al sistema
