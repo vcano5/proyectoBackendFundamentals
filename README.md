@@ -12,14 +12,14 @@ membresía: buscar libros, y acceder a su contenido, para el administrador
 (bibliotecario): gestionar los libros y las relaciones de los miembros con la
 biblioteca_
 <br/>
-- ¿Qué tipos de usuario tendrá nuestro sistema?
-	
+- **¿Qué tipos de usuario tendrá nuestro sistema?**
 	_Bibliotecario
 	Miembro
 	Usuario no registrado_
 <br/>
 - ¿Qué acciones puede realizar cada usuario?
-	**Bibliotecario**: 
+
+	Bibliotecario: 
 	- Iniciar sesión
 	- Agregar libros
 	- Editar los atributos de los libros
@@ -28,13 +28,13 @@ biblioteca_
 	- Renovar membresias
 	- Cancelar membresias
 
-	**Miembro**: 
+	Miembro: 
 	- Iniciar/cerrar sesión
 	- Buscar en el catálogo de libros
 	- Acceder al contenido de los libros
 	- Cancelar membresia
 
-	**Usuarios no registrados**
+	Usuarios no registrados
 	- Registrarse
 <br>
 - ¿Qué información se necesita?
