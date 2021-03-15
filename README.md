@@ -1,10 +1,10 @@
-#BibliotecaAPI
+# BibliotecaAPI
 Esta es nuestra implementacion de lo aprendido en el modulo 3, nuestra API permite manejar una biblioteca.
 
 Temática del proyecto: Sistema de gestión (como administrador) y acceso (como usuario)
 de una biblioteca digital
 
-####Requerimientos y estructural del proyecto
+#### Requerimientos y estructural del proyecto
 - ¿Qué espero que haga el proyecto?
 
 	_Implementar las funciones de una biblioteca digital; para los usuarios con
@@ -55,22 +55,22 @@ _Cuenta, libro, catalogo_
 	- Cuenta: dar un tipo de acceso al sistema
 	- Catalogo: devolver informacion de los libros que coincidan con el criterio de busqueda dado por el usuario
 
-####Modelo ER
+#### Modelo ER
 ![Modelo ER](https://raw.githubusercontent.com/vcano5/proyectoBackendFundamentals/docs/imgs/modelo_er.jpeg)
 
-####Modelo relacional
+#### Modelo relacional
 ![Modelo relacional](https://raw.githubusercontent.com/vcano5/proyectoBackendFundamentals/docs/imgs/modelo_relacional.jpeg)
 
-####Postwork sesion 5
+#### Postwork sesion 5 ####
 ![](https://raw.githubusercontent.com/vcano5/proyectoBackendFundamentals/docs/imgs/postwork5_1.jpeg)
 ![](https://raw.githubusercontent.com/vcano5/proyectoBackendFundamentals/docs/imgs/postwork5_1.jpeg)
 
 
-####Pre-requisitos
+#### Pre-requisitos
 >Node.js
 >Una base de datos relacional
 
-####Librerias
+#### Librerias
 - CORS
 - bodyparser
 - express
@@ -81,7 +81,7 @@ _Cuenta, libro, catalogo_
 - Sequelize
 
 
-####Ejecutar localmente
+#### Ejecutar localmente
 1. Clona este repositorio con
 > git clone https://github.com/vcano5/proyectoBackendFundamentals.git
 
@@ -97,4 +97,4 @@ _Cuenta, libro, catalogo_
 5. Ejecutar el proyecto
 > npm run start
 
-#####Equipo 3
+#### Equipo 3
