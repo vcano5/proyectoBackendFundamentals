@@ -5,7 +5,7 @@ const {
 	eliminarUsuario, 
 	extenderMembresia,
 	cancelarMembresia
-	} = require('../controllers/Usuario')
+	} = require('../controllers/usuario')
 
 const {
 	crearLibro,
