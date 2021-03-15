@@ -5,7 +5,7 @@ const {
 	cancelarMembresia,
 	registro,
 	obtenerUsuario
-} = require('../controllers/Usuario')
+} = require('../controllers/usuario')
 
 // const {
 // 	getLibro,
