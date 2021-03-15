@@ -1,4 +1,3 @@
-
 const db = require('../models');
 const Libro = db.libro;
 const Op = db.Sequelize.Op;
@@ -122,12 +121,12 @@ function updateLibro(req, res) {
 function borrarLibro(req, res) {
 	// D: Borra un libro con el parametro ISBN
 	if(res.locals.rol === 'Bibliotecario') {
-		if(req.body.ISBN !== undefined) {
-			Libro.destroy({where: {ISBN: req.body.ISBN}})
+		if(req.query.ISBN !== undefined) {
+			Libro.destroy({where: {ISBN: req.query.ISBN}})
 				.then(num => {
 					if(num == 1) {
 						res.send({
-							message: `Libro con ISBN ${req.body.ISBN} eliminado correctamente`
+							message: `Libro con ISBN ${req.query.ISBN} eliminado correctamente`
 						})
 					}
 				})

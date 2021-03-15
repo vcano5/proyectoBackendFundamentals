@@ -25,7 +25,7 @@ app.use(function(req, res, next) {
 const db = require('./models');
 var isDevelopment = process.env.NODE_ENV === "development"
 db.sequelize.sync({force: isDevelopment}).then(() => {
-	console.log('Drop and re-sync db.')
+	if(isDevelopment) console.log('Drop and re-sync db.')
 });
 
 // // Manejando los errores 404

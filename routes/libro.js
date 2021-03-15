@@ -5,11 +5,11 @@ const {getLibros, crearLibro, crearVariosLibros, borrarLibro, updateLibro, getLi
 const roles = require('./rol');
 const auth = require('./auth');
 
-router.get('/', auth.requerido, getLibros);
-router.post('/', auth.requerido, roles, crearLibro);
-router.post('/varios', auth.requerido, roles, crearVariosLibros)
-router.put('/:ISBN', auth.requerido, roles, updateLibro);
-router.delete('/:ISBN', auth.requerido, roles, borrarLibro);
-router.get('/:ISBN', auth.requerido, getLibro);
+router.get('/:ISBN', auth.requerido, getLibro);							// R: Regresa el contenido de un libro
+router.get('/', auth.requerido, getLibros); 							// R: Regresa todos los libros [registrados]
+router.post('/', auth.requerido, roles, crearLibro);					// C: Crea un nuevo libro [bibliotecario]
+router.post('/varios', auth.requerido, roles, crearVariosLibros)		// C: Crea un conjunto de libros [bibliotecario]
+router.put('/:ISBN', auth.requerido, roles, updateLibro);				// U: Modifica el contenido de un libro [bibliotecario]
+router.delete('/:ISBN', auth.requerido, roles, borrarLibro);			// D: Borra un libro [bibliotecario]
 
 module.exports = router;

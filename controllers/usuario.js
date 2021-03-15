@@ -93,8 +93,6 @@ function iniciarSesion(req, res, next) {
 	  })(req, res, next);
 }
 
-//res.status(403).send({mensaje: 'No has especificado el token de autentificación o no tienes permisos para realizar esa acción.'})
-
 function extenderMembresia(req, res, next) {
 	if(res.locals.rol === "Bibliotecario") {
 		const id = req.body.id;
