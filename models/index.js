@@ -17,9 +17,8 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.bibliotecario = require('./Bibliotecario.js')(sequelize, Sequelize);
 db.catalogo = require('./Catalogo.js')(sequelize, Sequelize);
 db.libro = require('./Libro.js')(sequelize, Sequelize);
-db.miembro = require('./Usuarios.js')(sequelize, Sequelize);
+db.usuario = require('./Usuario.js')(sequelize, Sequelize);
 
 module.exports = db;

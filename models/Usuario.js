@@ -3,8 +3,9 @@ const jwt = require('jsonwebtoken');
 const passport = require('passport');
 
 module.exports = (sequelize, Sequelize) => {
-    const Bibliotecario = sequelize.define("bibliotecario", {
-        idBibliotecario: {
+    const Op = Sequelize.Op;
+    const Usuario = sequelize.define("usuario", {
+        id: {
             type: Sequelize.INTEGER,
             primaryKey: true,
             autoIncrement: true
@@ -17,18 +18,23 @@ module.exports = (sequelize, Sequelize) => {
         },
         rol: {
             type: Sequelize.STRING,
-            defaultValue: 'Usuario'
+            defaultValue: 'Miembro'
+        },
+        vencimientoMembresia: {
+            type: Sequelize.DATE,
+            defaultValue: Sequelize.NOW
+
         }
     })
 
-    Bibliotecario.prototype.crearPassword = function(password) {
+    Usuario.prototype.crearPassword = function(password) {
         this.salt = crypto.randomBytes(16).toString('hex');
         this.hash = crypto
                     .pbkdf2Sync(password, this.salt, 10000, 512, 'sha512')
                     .toString('hex');
     }
 
-    Bibliotecario.prototype.validarPassword = function(password) {
+    Usuario.prototype.validarPassword = function(password) {
         const hash = crypto
                         .pbkdf2Sync(password, this.salt, 10000, 512, 'sha512')
                         .toString('hex');
@@ -36,7 +42,7 @@ module.exports = (sequelize, Sequelize) => {
         return this.hash === hash;
     }
 
-    Bibliotecario.prototype.generarJWT = function() {
+    Usuario.prototype.generarJWT = function() {
         const hoy = new Date();
         const expi = new Date(hoy);
         expi.setDate(hoy.getDate() + 7);
@@ -48,22 +54,22 @@ module.exports = (sequelize, Sequelize) => {
         }, process.env.SECRET);
     }
 
-    Bibliotecario.prototype.toAuthJSON = function() {
+    Usuario.prototype.toAuthJSON = function() {
         return {
-            username: this.username,
-            id: this.idMiembro,
+            nombre: this.nombre,
+            id: this.id,
             token: this.generarJWT()
         }
     }
 
-    Bibliotecario.prototype.publicData = function() {
+    Usuario.prototype.publicData = function() {
         return {
-            id: this.idBibliotecario,
+            id: this.id,
             nombre: this.nombre,
             createdAt: this.createdAt,
             updateAt: this.updateAt
         }
     }
 
-    return Bibliotecario
+    return Usuario
 }
